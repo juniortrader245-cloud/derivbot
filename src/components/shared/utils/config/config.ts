@@ -25,9 +25,12 @@ export const STAGING_DOMAINS = {
 } as const;
 
 // WebSocket server URLs
+// We replace the https protocol with wss for the WebSocket connection
+const getWsUrl = (baseUrl: string) => baseUrl.replace(/^http/, 'ws');
+
 export const WS_SERVERS = {
-    STAGING: `${brandConfig.platform.derivws.url.staging}options/ws/public`,
-    PRODUCTION: `${brandConfig.platform.derivws.url.production}options/ws/public`,
+    STAGING: `${getWsUrl(brandConfig.platform.derivws.url.staging)}options/ws/public`,
+    PRODUCTION: `${getWsUrl(brandConfig.platform.derivws.url.production)}options/ws/public`,
 } as const;
 
 // =============================================================================
